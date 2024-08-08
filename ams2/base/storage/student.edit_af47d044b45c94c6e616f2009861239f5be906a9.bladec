@@ -1,0 +1,28 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<?php if(isset($_SESSION['errors']) && isset($_GET['msg'])): ?>
+<ul>
+ <?php $__currentLoopData = $_SESSION['errors']; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $item): $loop = $this->incrementLoopIndices();  ?>
+ <li><?php echo \htmlentities($item??'', ENT_QUOTES, 'UTF-8', false); ?></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+</ul>
+<?php endif; ?>
+<?php if(isset($_SESSION['success']) && isset($_GET['msg'])): ?>
+<span><?php echo \htmlentities($_SESSION['success']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+<?php endif; ?>
+<form action="<?php echo \htmlentities(route('update/'.$student->id)??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST">
+ <input type="hidden" name="id" value="<?php echo \htmlentities($student->id??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <label>Name</label>
+ <input type="text" name="name" value="<?php echo \htmlentities($student->name??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <label>Year Of Birth</label>
+ <input type="text" name="year_of_birth" value="<?php echo \htmlentities($student->year_of_birth??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <label>Phone Number</label>
+ <input type="text" name="phone_number" value="<?php echo \htmlentities($student->phone_number??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <button type="submit" name="btn-submit" value="Cập nhật">Cập nhật</button>
+</form>
+<?php $this->stopSection(); ?>
+
+
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>
